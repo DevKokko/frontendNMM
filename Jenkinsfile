@@ -6,17 +6,17 @@ pipeline {
     stage('Build') {
       steps {
         echo "building..."
-        sh "sudo docker build -t localhost:32000/frontend:latest ."
-        sh "sudo docker push localhost:32000/frontend:latest"
+        sh "docker build -t localhost:32000/frontend:latest ."
+        sh "docker push localhost:32000/frontend:latest"
       }
     }
 
     stage('Deploy') {
       steps {
         echo "deploying..."
-        sh "sudo kubectl delete -f ./kubernetes/deployment.yaml"
-        sh "sudo kubectl apply -f ./kubernetes/deployment.yaml"
-        sh "sudo kubectl apply -f ./kubernetes/service.yaml"
+        sh "kubectl delete -f ./kubernetes/deployment.yaml"
+        sh "kubectl apply -f ./kubernetes/deployment.yaml"
+        sh "kubectl apply -f ./kubernetes/service.yaml"
       }
     }
   }
