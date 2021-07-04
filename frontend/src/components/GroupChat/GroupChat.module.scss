@@ -1,0 +1,22 @@
+.chatContainer{
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #3f220e;
+    color: #ffcc66;
+    border-style: solid;
+    border-color: #ffcc66;
+    border-width: 3px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatBox{
+    flex: 1 1 auto;
+    padding: 5px 10px;
+    overflow: auto;
+}
+
+.inputBox{
+    flex: 0 1 auto;
+}
