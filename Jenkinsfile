@@ -1,24 +1,25 @@
 // Jenkinsfile
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+  stages {
+    stage('Build') {
+      steps {
+        echo "building..."
+        sh "sudo docker build -t localhost:32000/frontend:latest ."
+        sh "sudo docker push localhost:32000/frontend:latest"
+      }
     }
+
+    stage('Deploy') {
+      steps {
+        echo "deploying..."
+        sh "sudo kubectl delete -f ./kubernetes/deployment.yaml"
+        sh "sudo kubectl apply -f ./kubernetes/deployment.yaml"
+        sh "sudo kubectl apply -f ./kubernetes/service.yaml"
+      }
+    }
+  }
 }
 /*pipeline {
   agent {
