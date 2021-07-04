@@ -1,6 +1,27 @@
 // Jenkinsfile
-
 pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        echo "building..."
+        sh "sudo docker build -t localhost:32000/frontend:latest ."
+        sh "sudo docker push localhost:32000/frontend:latest"
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo "deploying..."
+        sh "sudo kubectl delete -f ./kubernetes/deployment.yaml"
+        sh "sudo kubectl apply -f ./kubernetes/deployment.yaml"
+        sh "sudo kubectl apply -f ./kubernetes/service.yaml"
+      }
+    }
+  }
+}
+/*pipeline {
   agent {
     kubernetes {
       // this label will be the prefix of the generated pod's name
@@ -35,7 +56,7 @@ spec:
   }
 
   stages {
-    stage('Build image') {
+    stage('Build') {
       steps {
         container('docker') {
           sh "sudo docker build -t localhost:32000/frontend:latest ."
@@ -54,4 +75,4 @@ spec:
       }
     }
   }
-}
+}*/
