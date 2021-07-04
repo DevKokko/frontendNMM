@@ -19,7 +19,7 @@ spec:
                       - npm
                       - start
                   imagePullPolicy: IfNotPresent
-                  image: localhost:32000/frontend:registry53
+                  image: localhost:32000/frontend:latest
                   name: frontend
                   ports:
                       - containerPort: 3000

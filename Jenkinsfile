@@ -38,8 +38,8 @@ spec:
     stage('Build image') {
       steps {
         container('docker') {
-          sh "docker build -t your-registry/my-app:latest ."
-          sh "docker push your-registry/my-app:latest"
+          sh "docker build -t localhost:32000/frontend:latest ."
+          sh "docker push localhost:32000/frontend:latest"
         }
       }
     }
