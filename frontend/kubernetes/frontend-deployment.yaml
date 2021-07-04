@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: frontend-deployment
+    labels:
+        app: frontend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: frontend
+    template:
+        metadata:
+            labels:
+                app: frontend
+        spec:
+            containers:
+                - args:
+                      - npm
+                      - start
+                  imagePullPolicy: IfNotPresent
+                  image: localhost:32000/frontend:registry53
+                  name: frontend
+                  ports:
+                      - containerPort: 3000
+                #   volumeMounts:
+                #       - mountPath: /app/frontend
+                #         name: frontend-claim0
+                #       - mountPath: /app/frontend/node_modules
+                #         name: node-modules
+            restartPolicy: Always
+            # volumes:
+            #     - name: frontend-claim0
+            #       persistentVolumeClaim:
+            #           claimName: frontend-claim0
+            #     - name: node-modules
+            #       persistentVolumeClaim:
+            #           claimName: node-modules
