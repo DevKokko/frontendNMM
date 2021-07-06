@@ -47,7 +47,7 @@ spec:
     stage('Deploy') {
       steps {
         container('kubectl') {
-          sh "kubectl delete -f ./kubernetes/deployment.yaml"
+          sh "kubectl delete -f ./kubernetes/deployment.yaml || true"
           sh "kubectl apply -f ./kubernetes/deployment.yaml"
           sh "kubectl apply -f ./kubernetes/service.yaml"
         }
