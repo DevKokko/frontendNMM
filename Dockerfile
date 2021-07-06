@@ -7,7 +7,7 @@ WORKDIR /app/frontend
 # Install dependencies
 COPY package.json package-lock.json /app/frontend/
 
-RUN npm install
+RUN npm install || true
 
 # Add rest of the client code
 COPY . /app/frontend
