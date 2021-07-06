@@ -39,7 +39,7 @@ class NavBar extends React.Component {
 		return(
 			<>
 				<NavigationItem link="/leaderboard" mr="mr-4">
-                    Leaderboard
+                    Leaderboard 2
                     <FontAwesomeIcon icon={faListAlt} className="ml-2"/>
                 </NavigationItem>
 
