@@ -25,8 +25,8 @@ spec:
   stages {
     stage('Build') {
       steps {
-		  sh "sudo docker build -t localhost:32000/frontend:latest ."
-		  sh "sudo docker push localhost:32000/frontend:latest"
+		  sh "docker build -t localhost:32000/frontend:latest ."
+		  sh "docker push localhost:32000/frontend:latest"
       }
     }
 
