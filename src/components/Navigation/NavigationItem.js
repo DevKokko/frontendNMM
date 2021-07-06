@@ -9,7 +9,7 @@ const navigationItem = ( props ) => {
     const isActive = props.location.pathname === props.link;
     
     return (
-        <NavItem className="d-flex align-content-center p-1 mr-2">
+        <NavItem className={"d-flex align-content-center p-1 " + (!props.mr ? "mr-2" : props.mr)}>
             <RouterNavLink
                 style={{textDecoration: "none"}}
                 className="container fluid align-self-center p-0" 

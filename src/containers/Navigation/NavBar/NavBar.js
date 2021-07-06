@@ -7,7 +7,7 @@ import NavigationItem from '../../../components/Navigation/NavigationItem';
 import NavigationProfile from '../../../components/Navigation/NavigationProfile';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt, faSignOutAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt, faUserEdit, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Collapse,
@@ -38,6 +38,11 @@ class NavBar extends React.Component {
     unAuthNavItems = () => {
 		return(
 			<>
+				<NavigationItem link="/leaderboard" mr="mr-4">
+                    Leaderboard
+                    <FontAwesomeIcon icon={faListAlt} className="ml-2"/>
+                </NavigationItem>
+
 				<NavigationItem link="/signin">
                     Sign In
                     <FontAwesomeIcon icon={faSignInAlt} className="ml-2"/>
@@ -54,6 +59,10 @@ class NavBar extends React.Component {
     authNavItems = () => {
 		return(
 			<>
+                <NavigationItem link="/leaderboard" mr="mr-4">
+                    Leaderboard
+                    <FontAwesomeIcon icon={faListAlt} className="ml-2"/>
+                </NavigationItem>
                 <NavigationProfile/>
 			</>
 		);

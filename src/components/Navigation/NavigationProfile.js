@@ -66,6 +66,18 @@ class NavigationProfile extends React.Component {
                                 My Friends
                             </DropdownItem>
                         </RouterNavLink>
+                        {
+                            this.props.isAdmin && 
+                            <RouterNavLink
+                                style={{textDecoration: "none"}}
+                                exact
+                                to={"/admin/users"}
+                            >
+                                <DropdownItem>
+                                    All Users
+                                </DropdownItem>
+                            </RouterNavLink>
+                        }
                         <DropdownItem divider />
                         <RouterNavLink
                             style={{textDecoration: "none"}}

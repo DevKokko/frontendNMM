@@ -26,13 +26,17 @@ class FriendsPage extends React.Component {
         return (
             <div className={styles.FriendsPage_content}>
                 <div className={styles.TableContainer}>
-                    <table>
-                        {
-                            this.state.friends.map((x, idx) => {
-                                return <FriendsTableRow onDelete={this.onDelete} key={idx} data={x}/>
-                            })
-                        }
-                    </table>
+                    { 
+                        this.state.friends.length > 0 ?
+                        <table>
+                            {
+                                this.state.friends.map((x, idx) => {
+                                    return <FriendsTableRow onDelete={this.onDelete} key={idx} data={x}/>
+                                })
+                            }
+                        </table> :
+                        <span className="small font-italic">Friends list is empty</span>
+                    }
                 </div>
             </div>
         );

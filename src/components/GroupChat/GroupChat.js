@@ -30,7 +30,9 @@ class GroupChat extends React.Component {
                         draft.messages.push({username: data.username, userId: data.userId, message: data.message});
                     })
                 );
-                document.getElementById("chatBox").scrollTo(0, document.getElementById("chatBox").scrollHeight);
+                if(document.getElementById("chatBox")){
+                    document.getElementById("chatBox").scrollTo(0, document.getElementById("chatBox").scrollHeight);
+                }
             }
         } 
      

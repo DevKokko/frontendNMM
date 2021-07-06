@@ -19,7 +19,11 @@
     "react-spinners-css": "^2.0.1",
     "reactstrap": "^8.1.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "datatables.net-dt": "1.1.0",
+    "datatables.net": "1.10.25",
+    "datatables.net-responsive-dt": "2.2.9",
+    "jquery": "3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

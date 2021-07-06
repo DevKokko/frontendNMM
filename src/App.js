@@ -13,6 +13,9 @@ import GameLobby from './containers/GameLobby/GameLobby';
 import * as actions from './store/actions';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import FriendsPage from './containers/FriendsPage/FriendsPage';
+import AdminUsers from './containers/Admin/AdminUsers';
+import Leaderboard from './containers/Leaderboard/Leaderboard';
+import VerificationPage from './containers/VerificationPage/VerificationPage';
 
 
 class App extends Component {
@@ -61,6 +64,12 @@ class App extends Component {
                     render={() => ( < SignUp /> )}
 				/>
 
+                <Route 
+					path={["/leaderboard"]} 
+					exact
+                    render={() => ( <Leaderboard /> )}
+				/>
+
                 <Redirect to="/" />
             </Switch>
         );
@@ -88,7 +97,6 @@ class App extends Component {
                     render={() => ( < GameLobby /> )}
 				/>
 
-
                 <Route 
 					path={["/game"]} 
 					exact
@@ -106,7 +114,25 @@ class App extends Component {
 					exact
                     render={() => ( <FriendsPage /> )}
 				/>
-                
+
+                <Route 
+					path={["/admin/users"]} 
+					exact
+                    render={() => ( <AdminUsers /> )}
+				/>
+
+                <Route 
+					path={["/leaderboard"]} 
+					exact
+                    render={() => ( <Leaderboard /> )}
+				/>
+
+                <Route 
+					path={["/verify_account"]} 
+					exact
+                    render={() => ( < VerificationPage /> )}
+				/>
+
                 <Redirect to="/" />
             </Switch>
         );

@@ -11,8 +11,13 @@ export const API = {
     addFriend,
     removeFriend,
     getProfilePic,
+    updateProfile,
     uploadProfilePic,
-    getFriends
+    getFriends,
+    getUsers,
+    getUserInfo,
+    getLeaderboard,
+    verifyAccount
 };
 
 function signIn(axios, jsonRequest) 
@@ -117,6 +122,13 @@ function getProfilePic(username){
         .catch( err => err);
 }
 
+function updateProfile(axios, jsonRequest) 
+{
+    return axios.put('/users/update', jsonRequest)
+        .then( response =>  response ? response.data : null)
+        .catch( err => err);
+}
+
 function uploadProfilePic(file, username){
     var formData = new FormData();
     formData.append("image", file);
@@ -134,4 +146,30 @@ function getFriends(userId){
     return axios.get(`/users/friends/${userId}`)
         .then( response =>  response ? response.data : null)
         .catch( err => err);
+}
+
+function getUsers(){
+    return axios.get(`/users/allUsers`)
+        .then( response =>  response ? response.data : null)
+        .catch( err => err);
+}
+
+function getLeaderboard(){
+    return axios.get(`/users/leaderboard`)
+        .then( response =>  response ? response.data : null)
+        .catch( err => err);
+}
+
+function getUserInfo(axios){
+    return axios.get(`/user`)
+        .then( response =>  response ? response.data : null)
+        .catch( err => err);
+}
+
+
+function verifyAccount(axios, jsonRequest) 
+{
+    return axios.put('/verify_account', jsonRequest)
+        .then( response =>  response ? response.data : null)
+        .catch( err => console.error(err));
 }
