@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import styles from './AdminUsers.module.scss';
 import { API } from '../../Services/API';
 import produce from 'immer';
+import { Alert } from 'reactstrap';
 import AdminUsersTableRow from './AdminUsersTableRow';
 
 class AdminUsers extends React.Component {
 
     state = {
-        users: []
+        users: [],
+        updated: false
     };
 
     componentDidMount() {
@@ -22,20 +24,23 @@ class AdminUsers extends React.Component {
         })
     }
 
-    onDelete = () =>{
-        API.getUsers().then(res => {
-            this.setState(
-                produce( draft => {
-                    draft.users = res;
-                })
-            );
-        })
+    onUpdate = () =>{
+        this.setState({updated: false});
+    }
+    onUpdated = () =>{
+        this.setState({updated: true});
     }
 
     render() {
         return (
             <div className={styles.AdminUsersPage_content}>
                 <div className={styles.TableContainer}>
+                    {
+                        this.state.updated &&
+                        <Alert color="success">
+                            User Info successfully updated
+                        </Alert>
+                    }
                     <table>
                         <thead>
                             <tr>
@@ -46,13 +51,14 @@ class AdminUsers extends React.Component {
                                 <th>Elo</th>
                                 <th>Banned</th>
                                 <th>Verified</th>
+                                <th style={{whiteSpace: "nowrap"}}>Is Admin</th>
                                 <th>Reports</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 this.state.users.map((x, idx) => {
-                                    return <AdminUsersTableRow onDelete={this.onDelete} key={idx} data={x}/>
+                                    return <AdminUsersTableRow onUpdate={this.onUpdate} onUpdated={this.onUpdated} key={idx} data={x}/>
                                 })
                             }
                         </tbody>

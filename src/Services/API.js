@@ -17,7 +17,8 @@ export const API = {
     getUsers,
     getUserInfo,
     getLeaderboard,
-    verifyAccount
+    verifyAccount,
+    adminUpdateUser
 };
 
 function signIn(axios, jsonRequest) 
@@ -172,4 +173,11 @@ function verifyAccount(axios, jsonRequest)
     return axios.put('/verify_account', jsonRequest)
         .then( response =>  response ? response.data : null)
         .catch( err => console.error(err));
+}
+
+function adminUpdateUser(axios, jsonRequest) 
+{
+    return axios.put('/admin/users/update', jsonRequest)
+        .then( response =>  response ? response.data : null)
+        .catch( err => err);
 }

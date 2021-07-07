@@ -4,8 +4,6 @@ import styles from './Leaderboard.module.scss';
 import { API } from '../../Services/API';
 import produce from 'immer';
 import Datatable from '../Datatable/Datatable';
-import { Container, Row, Col } from 'reactstrap';
-
 
 class Leaderboard extends React.Component {
 
@@ -49,18 +47,14 @@ class Leaderboard extends React.Component {
 
     render() {
         return (
-            <Container fluid className={styles.LeaderboardPage_content}>
-                <Row className="mt-5 mb-3">
-                    <Col className={styles["header"]}>
-                        Leaderboard
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className={styles.TableContainer}>
-                        <Datatable header={["Rank", "Username", "ELO"]} body={this.state.body}/>
-                    </Col>
-                </Row>
-            </Container>
+            <div className={styles.LeaderboardPage_content}>
+                <p className={styles["header"]}>
+                    Leaderboard
+                </p>
+                <div className={styles.TableContainer}>
+                    <Datatable header={["Rank", "Username", "ELO"]} body={this.state.body}/>
+                </div>
+            </div>
         );
     }
 

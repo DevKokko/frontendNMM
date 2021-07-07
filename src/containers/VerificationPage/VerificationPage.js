@@ -6,6 +6,7 @@ import styles from './VerificationPage.module.scss';
 import produce from 'immer';
 import { Row, Col, Alert } from 'reactstrap';
 import axios from '../../Services/axiosConfig';
+import Message from '../../components/GroupChat/Message';
 
 
 class VerificationPage extends React.Component {
@@ -41,21 +42,30 @@ class VerificationPage extends React.Component {
         console.log("verification token: ", verificationToken)
         if (!verificationToken) {
             this.props.history.replace("/");
+            return;
         }
 
-        // API.verifyAccount(axios, { "token": verificationToken }).then(res=>{
-        //     if (!res) {
-        //         return;
-        //     }
+        API.verifyAccount(axios, { "token": verificationToken }).then(res=>{
+            console.log("res", res)
+            if (!res) {
+                return;
+            }
                     
-        //     if (res.success) {
-        //         this.setState(
-        //             produce(draft => {
-        //                 draft.verified = true;
-        //             })
-        //         );
-        //     }
-        // });
+            if (res.success) {
+                this.setState(
+                    produce(draft => {
+                        draft.verified = true;
+                    })
+                );
+                return;
+            }
+
+            //verification error
+            if (res.redirect){
+                this.props.history.replace("/");
+                return; 
+            } 
+        });
     }
     
 }

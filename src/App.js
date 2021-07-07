@@ -116,6 +116,63 @@ class App extends Component {
 				/>
 
                 <Route 
+					path={["/leaderboard"]} 
+					exact
+                    render={() => ( <Leaderboard /> )}
+				/>
+
+                <Route 
+					path={["/verify_account"]} 
+					exact
+                    render={() => ( < VerificationPage /> )}
+				/>
+
+                <Redirect to="/" />
+            </Switch>
+        );
+    }
+
+    adminRoutes = () => {
+        return(
+			<Switch>
+
+                <Route 
+					path={["/"]} 
+					exact
+                    render={() => ( < LandingPage /> )}
+				/>
+
+				<Route 
+					path={["/logout"]} 
+					exact
+                    render={() => ( < LogOut /> )}
+				/>
+
+                <Route 
+					path={["/gamelobby"]} 
+					exact
+                    render={() => ( < GameLobby /> )}
+				/>
+
+                <Route 
+					path={["/game"]} 
+					exact
+                    render={() => ( <GamePage /> )}
+				/>
+
+                <Route 
+					path={["/profile"]} 
+					exact
+                    render={() => ( <ProfilePage /> )}
+				/>
+
+                <Route 
+					path={["/friends"]} 
+					exact
+                    render={() => ( <FriendsPage /> )}
+				/>
+
+                <Route 
 					path={["/admin/users"]} 
 					exact
                     render={() => ( <AdminUsers /> )}
@@ -138,16 +195,18 @@ class App extends Component {
         );
     }
 
-
     render() {
         return (
             <Container fluid className="App">
                 <Layout>
                     {
-                        this.props.isAuthed ? 
-                            this.authRoutes()
+                        this.props.isAdmin ? 
+                            this.adminRoutes()
                             : 
-                            this.unAuthRoutes()
+                            (this.props.isAuthed?
+                                this.authRoutes()
+                                :
+                                this.unAuthRoutes())
                     }
                 </Layout>
             </Container>
@@ -159,6 +218,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         isAuthed : state.auth.token ? true : false,
+        isAdmin : state.auth.isAdmin
     }
 }
 

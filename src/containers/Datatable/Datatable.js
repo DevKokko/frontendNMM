@@ -32,6 +32,7 @@ class Datatable extends React.Component {
     }
     componentWillUnmount(){
        table.destroy(true);
+        table = null;
     }
     shouldComponentUpdate(nextProps, nextState) {
         this.reloadTableData(nextProps);

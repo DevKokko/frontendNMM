@@ -13,7 +13,7 @@
 
 .TableContainer{
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 25px;
     max-width: 90%;
     outline: none !important;
     box-shadow: none !important;
@@ -27,4 +27,8 @@
 .header {
     font-size: $fontLG;
     color: $secColor;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 25px;
+    max-width: 90%;
 }

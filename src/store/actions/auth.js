@@ -5,7 +5,8 @@ export const authSuccess = (token, userId, username, isAdmin) => {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId);
     localStorage.setItem('username', username);
-    localStorage.setItem('isAdmin', isAdmin);
+    if(isAdmin)
+        localStorage.setItem('isAdmin', 1);
 
     return {
         type: actionTypes.AUTH_SUCCESS,
